@@ -19,7 +19,7 @@ This module lets you use Puppet to install and configure MailHog
 
 MailHog is an email testing tool for developers written by Ian Kent (https://github.com/mailhog/). It receives mail and displays it in a WebUI. No login required, no need for user accounts. Just all received mail is shown in the WebUI. 
 
-You can access the WebUI by opening http://{IP}:8025 (default port, feel free to change) in your browser. 
+You can access the WebUI by opening http://$::ipaddress:8025 (default port, feel free to change) in your browser. 
 
 MailHog will receive mail (default is smtp on port 1025) and will display it in the WebUI. You can view and delete the mail. If required one could also forward the mail to the corresponding external Mailserver for the receipients e-mail domain. 
 
