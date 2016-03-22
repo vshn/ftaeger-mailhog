@@ -19,7 +19,7 @@ This module lets you use Puppet to install and configure MailHog
 
 MailHog is an email testing tool for developers written by Ian Kent (https://github.com/mailhog/). It receives mail and displays it in a WebUI. No login required, no need for user accounts. Just all received mail is shown in the WebUI. 
 
-You can access the WebUI by opening http://<IP>:8025 (default port, feel free to change) in your browser. 
+You can access the WebUI by opening http://{IP}:8025 (default port, feel free to change) in your browser. 
 
 MailHog will receive mail (default is smtp on port 1025) and will display it in the WebUI. You can view and delete the mail. If required one could also forward the mail to the corresponding external Mailserver for the receipients e-mail domain. 
 
@@ -38,9 +38,11 @@ Due to the size limitation on puppet forge the module will download the mailhog 
 * installs "daemon" package
 
 
-### Setup Requirements **OPTIONAL**
+### Setup Requirements
 
-This mailhog module requires [puppetlabs-stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib) and [maestrodev-wget](https://forge.puppetlabs.com/maestrodev/wget).
+This mailhog module requires:
+* [puppetlabs-stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib) 
+* [maestrodev-wget](https://forge.puppetlabs.com/maestrodev/wget)
 
 
 ### Beginning with mailhog
@@ -85,194 +87,50 @@ The following parameters are available in the ::mailhog class:
 
 
 ####MailHog config values
-#####`$mailhog::params::api_bind_ip`
-    Default value: 0.0.0.0
-The IP address the API server will be bound to.
-
-
-#####`$mailhog::params::api_bind_port`
-    Default value: 8025
-The port the API server will be bound to.
-
-
-#####`$mailhog::params::api_bind_host`
-    Default value: undef
-API URL for MailHog UI to connect to, e.g. http://some.host:1234 if API and WebUI are deployed on different hosts/IPs
-
-
-#####`$mailhog::params::cors_origin`
-    Default value: undef
-CORS Access-Control-Allow-Origin header for API endpoints
-
-
-#####`$mailhog::params::hostname`
-    Default value: $::fqdn
-Hostname to use for EHLO/HELO and message IDs
-
-
-#####`$mailhog::params::invite_jim`
-    Default value: false
-Decide whether to invite Jim, the chaos monkey. Jim is the MailHog Chaos Monkey, inspired by Netflix. 
-
-He will:
-* Reject connections
-* Rate limit connections
-* Reject authentication
-* Reject senders
-* Reject recipients
-
-
-#####`$mailhog::params::jim_accept`
-    Default value: 0.99
-Chance of accepting an incoming connection (1.0 = 100%)
-
-
-#####`$mailhog::params::jim_disconnect`
-    Default value: 0.005
-Chance of a disconnect (1.0 = 100%)
-
-
-#####`$mailhog::params::jim_linkspeed_affect`
-    Default value: 0.1
-Chance of the link speed being affected for an incoming mail (1.0 = 100%)
-
-
-#####`$mailhog::params::jim_linkspeed_max`
-    Default value: 10240
-Maximum link speed (in bytes per second)
-
-
-#####`$mailhog::params::jim_linkspeed_min`
-    Default value: 1024
-Minimum link speed (in bytes per second)
-
-
-#####`$mailhog::params::jim_reject_auth`
-    Default value: 0.05
-Chance of rejecting authentication (AUTH)
-
-
-#####`$mailhog::params::jim_reject_recipient`
-    Default value: 0.05
-Chance of rejecting a recipient (RCPT TO)
-
-
-#####`$mailhog::params::jim_reject_sender`
-    Default value: 0.05
-Chance of rejecting a sender (MAIL FROM)
-
-
-#####`$mailhog::params::mongo_coll`
-    Default value: messages
-MongoDB collection if MongoDB is being used as backend storage
-
-
-#####`$mailhog::params::mongo_db`
-    Default value: mailhog
-MongoDB database if MongoDB is being used as backend storage
-
-
-#####`$mailhog::params::mongo_uri_ip`
-    Default value: 127.0.0.1
-MongoDB URI IP if MongoDB is being used as backend storage
-
-
-#####`$mailhog::params::mongo_uri_port`
-    Default value: 27017
-MongoDB URI port if MongoDB is being used as backend storage
-
-
-#####`$mailhog::params::outgoing_smtp`
-    Default value: undef
-JSON file containing outgoing SMTP servers
-
-
-#####`$mailhog::params::smtp_bind_addr_ip`
-    Default value: 127.0.0.1
-SMTP bind interface, this is where MailHog will receive incoming mails
-
-
-#####`$mailhog::params::smtp_bind_addr_port`
-    Default value: 1025
-SMTP bind port, this is where MailHog will receive incoming mails
-
-
-#####`$mailhog::params::storage`
-    Default value: memory
-Message storage: memory or mongodb
-
-
-#####`$mailhog::params::ui_bind_addr_ip`
-    Default value: 0.0.0.0
-HTTP bind interface for WebUI
-
-
-#####`$mailhog::params::ui_bind_addr_port`
-    Default value: 8025
-HTTP bind port for WebUI
+| parameter                                |      default value      |  description |
+|------------------------------------------|:-----------------------:|-------------:|
+| `$mailhog::params::api_bind_ip`          | 0.0.0.0   | The IP address the API server will be bound to. |
+| `$mailhog::params::api_bind_port`        | 8025      | The port the API server will be bound to. |
+| `$mailhog::params::api_bind_host`        | undef     | API URL for MailHog UI to connect to, e.g. http://some.host:1234 if API and WebUI are deployed on different hosts/IPs. |
+| `$mailhog::params::cors_origin`          | undef     | CORS Access-Control-Allow-Origin header for API endpoints. |
+| `$mailhog::params::hostname`             | $::fqdn   | Hostname to use for EHLO/HELO and message IDs. |
+| `$mailhog::params::invite_jim`           | false     | Decide whether to invite Jim, the chaos monkey. Jim is the MailHog Chaos Monkey, inspired by Netflix. He will:<br><ul><li>Reject connections</li><li>Rate limit connections</li><li>Reject authentication</li><li>Reject senders</li><li>Reject recipients</li></ul>|
+| `$mailhog::params::jim_accept`           | 0.99      | Chance of accepting an incoming connection (1.0 = 100%) |
+| `$mailhog::params::jim_disconnect`       | 0.005     | Chance of a disconnect |
+| `$mailhog::params::jim_linkspeed_affect` | 0.1       | Chance of the link speed being affected for an incoming mail |
+| `$mailhog::params::jim_linkspeed_max`    | 10240     | Maximum link speed (in bytes per second) |
+| `$mailhog::params::jim_linkspeed_min`    | 1024      | Minimum link speed (in bytes per second) |
+| `$mailhog::params::jim_reject_auth`      | 0.05      | Chance of rejecting authentication (AUTH) |
+| `$mailhog::params::jim_reject_recipient` | 0.05      | Chance of rejecting a recipient (RCPT TO) |
+| `$mailhog::params::jim_reject_sender`    | 0.05      | Chance of rejecting a sender (MAIL FROM) |
+| `$mailhog::params::mongo_coll`           | messages  | MongoDB collection if MongoDB is being used as backend storage |
+| `$mailhog::params::mongo_db`             | mailhog   | MongoDB database if MongoDB is being used as backend storage |
+| `$mailhog::params::mongo_uri_ip`         | 127.0.0.1 | MongoDB URI IP if MongoDB is being used as backend storage |
+| `$mailhog::params::mongo_uri_port`       | 27017     | MongoDB URI port if MongoDB is being used as backend storage |
+| `$mailhog::params::outgoing_smtp`        | undef     | JSON file containing outgoing SMTP servers |
+| `$mailhog::params::smtp_bind_addr_ip`    | 127.0.0.1 | SMTP bind interface, this is where MailHog will receive incoming mails |
+| `$mailhog::params::smtp_bind_addr_port`  | 1025      | SMTP bind port, this is where MailHog will receive incoming mails |
+| `$mailhog::params::storage`              | memory    | Message storage: memory or mongodb |
+| `$mailhog::params::ui_bind_addr_ip`      | 0.0.0.0   | HTTP bind interface for WebUI |
+| `$mailhog::params::ui_bind_addr_port`    | 8025      | HTTP bind port for WebUI |
 
 
 
 ####Puppet module config values
-#####`$mailhog::params::version`
-    Default value: 0.2.0
-Version of Mailhog to be used. Feel free to look up the latest release version from [GitHub](https://github.com/mailhog/MailHog/releases/latest).
-
-
-#####`$mailhog::params::config_template`
-    Default value: mailhog/mailhog.conf.erb
-Name and position of the ERB-template for the mailhog config file.
-
-
-#####`$mailhog::params::config`
-    Default value: "/etc/mailhog.conf"
-Path and filename for mailhog config file at the target system
-
-
-#####`$mailhog::service_manage`
-    Default value: true
-
-
-#####`$mailhog::params::service_enable`
-    Default value: true
-
-
-#####`$mailhog::params::service_ensure`
-    Default value: "running"
-Either 'running' or 'stopped' to chose whether mailhog should run on system startup or not.
-
-
-#####`$mailhog::params::service_name`
-    Default value: "mailhog"
-Name of the service
-
-
-#####`$mailhog::params::binary_path`
-    Default value: "/usr/bin"
-Where to place the mailhog binary at the target system
-
-
-#####`$mailhog::params::binary_file`
-    Default value: "${binary_path}/mailhog"
-Path of the mailhog binary at the target system
-
-
-#####`$mailhog::params::source_file`
-    Default value: "MailHog_linux_v${$mailhog_version}_386"
-The download URL for the mailhog binary at the "files" directory of the puppet module. This will be populated with the file according to the target systems architecture.
-
-
-#####`$mailhog::params::user`
-    Default value: mailhog
-Username of the user running mailhog service at the target system.
-
-#####`$mailhog::params::homedir`
-    Default value: "/var/lib/mailhog"
-Home directory of above mailhog user.
-
-#####`$mailhog::params::mailhog_version`
-    Default value: 0.1.9
-This is the mailhog version used for the target system.
+| parameter                                |      default value       |  description |
+|------------------------------------------|:------------------------:|-------------:|
+| `$mailhog::params::version`              | 0.2.0                    | Version of Mailhog to be used. Feel free to look up the latest release version from [GitHub](https://github.com/mailhog/MailHog/releases/latest) |
+| `$mailhog::params::config_template`      | mailhog/mailhog.conf.erb | Name and position of the ERB-template for the mailhog config file.
+| `$mailhog::params::config`               | /etc/mailhog.conf        | Path and filename for mailhog config file at the target system |
+| `$mailhog::service_manage`               | true                     | Whether the service should be managed by this module or not. |
+| `$mailhog::params::service_enable`       | true                     | Whether the service should be started on boot or not. |
+| `$mailhog::params::service_ensure`       | running                  | Either "running" or "stopped" |
+| `$mailhog::params::service_name`         | mailhog                  | Name of the service |
+| `$mailhog::params::binary_path`          | /usr/bin                 | Where to place the mailhog binary at the target system |
+| `$mailhog::params::binary_file`          | ${binary_path}/mailhog   | Path of the mailhog binary at the target system |
+| `$mailhog::params::user`                 | mailhog                  | Username of the user running mailhog service at the target system. |
+| `$mailhog::params::homedir`              | /var/lib/mailhog         | Home directory of above mailhog user. |
+| `$mailhog::params::mailhog_version`      | 0.2.0                    | This is the mailhog version used for the target system. |
 
 
 ## Limitations
