@@ -94,7 +94,7 @@ The following parameters are available in the ::mailhog class:
 | `$mailhog::params::api_bind_host`        | undef     | API URL for MailHog UI to connect to, e.g. http://some.host:1234 if API and WebUI are deployed on different hosts/IPs. |
 | `$mailhog::params::cors_origin`          | undef     | CORS Access-Control-Allow-Origin header for API endpoints. |
 | `$mailhog::params::hostname`             | $::fqdn   | Hostname to use for EHLO/HELO and message IDs. |
-| `$mailhog::params::invite_jim`           | false     | Decide whether to invite Jim, the chaos monkey. Jim is the MailHog Chaos Monkey, inspired by Netflix. He will:<br><ul><li>Reject connections</li><li>Rate limit connections</li><li>Reject authentication</li><li>Reject senders</li><li>Reject recipients</li></ul>|
+| `$mailhog::params::invite_jim`           | false     | Decide whether to invite Jim, the chaos monkey. Jim is the MailHog Chaos Monkey, inspired by Netflix. <br>He will:<br><ul><li>Reject connections</li><li>Rate limit connections</li><li>Reject authentication</li><li>Reject senders</li><li>Reject recipients</li></ul>|
 | `$mailhog::params::jim_accept`           | 0.99      | Chance of accepting an incoming connection (1.0 = 100%) |
 | `$mailhog::params::jim_disconnect`       | 0.005     | Chance of a disconnect |
 | `$mailhog::params::jim_linkspeed_affect` | 0.1       | Chance of the link speed being affected for an incoming mail |
