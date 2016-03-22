@@ -16,7 +16,7 @@
   "manifests/install.pp": "396af549c6dc3510c50252a418ab29dc",
   "manifests/params.pp": "7690a4f1aff0e86b6f4c8e68f7705e53",
   "manifests/service.pp": "5f2637d1449555d4d249e5f3a0f20f75",
-  "metadata.json": "707aee8b7b1f7bdda30943c0cbaba758",
+  "metadata.json": "b0e2266933029675ca7fc9e83d735ad2",
   "spec/acceptance/class_spec.rb": "86b62583305a49713ea1cbf67e00e6bb",
   "spec/acceptance/nodesets/centos-511-x64.yml": "19f4339a9395ce5ef8e19cd66844e9b1",
   "spec/acceptance/nodesets/centos-66-x64.yml": "b0b1129ab2f45b449bb9fea565bad5e0",
