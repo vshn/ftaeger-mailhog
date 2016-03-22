@@ -17,12 +17,18 @@ class mailhog::install inherits mailhog {
   }
 
   # Deploy mailhog binary
-  file { $mailhog::binary_file:
-    ensure => file,
-    source => "puppet:///modules/mailhog/${mailhog::source_file}",
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0755',
+  wget::fetch { 'Download MailHog binary':
+    source      => $mailhog::source_file,
+    destination => $mailhog::binary_file,
+    timeout     => 0,
+    verbose     => false,
+  }
+
+  file {$mailhog::binary_file:
+    ensure  => 'present',
+    mode    => '0755',
+    owner    => 'root',
+    group   => 'root',
   }
 
   # Deploy mailhog init script

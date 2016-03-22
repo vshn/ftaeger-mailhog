@@ -25,9 +25,7 @@ MailHog will receive mail (default is smtp on port 1025) and will display it in 
 
 The configuration is straight forward - take a look at the params.pp class for default values.
 
-I've included mailhog binaries for version 0.1.9 with the module. If required feel free to put a newer version in the "files" directory and change the filename to follow my naming scheme 
-like "MailHog_linux_v0.1.9_386" which would be "Mailhog_linux_v<VERSION>_<ARCHITECTURE>". You also need to change the "mailhog_version" variable to follow the new version. 
-
+Due to the size limitation on puppet forge the module will download the mailhog binary to the target system. 
 
 ## Setup
 
@@ -42,7 +40,7 @@ like "MailHog_linux_v0.1.9_386" which would be "Mailhog_linux_v<VERSION>_<ARCHIT
 
 ### Setup Requirements **OPTIONAL**
 
-This mailhog module requires puppetlabs-stdlib.
+This mailhog module requires [puppetlabs-stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib) and [maestrodev-wget](https://forge.puppetlabs.com/maestrodev/wget).
 
 
 ### Beginning with mailhog
@@ -216,13 +214,20 @@ HTTP bind port for WebUI
 
 
 ####Puppet module config values
+#####`$mailhog::params::version`
+    Default value: 0.2.0
+Version of Mailhog to be used. Feel free to look up the latest release version from [GitHub](https://github.com/mailhog/MailHog/releases/latest).
+
+
 #####`$mailhog::params::config_template`
     Default value: mailhog/mailhog.conf.erb
 Name and position of the ERB-template for the mailhog config file.
 
+
 #####`$mailhog::params::config`
     Default value: "/etc/mailhog.conf"
 Path and filename for mailhog config file at the target system
+
 
 #####`$mailhog::service_manage`
     Default value: true
@@ -236,13 +241,16 @@ Path and filename for mailhog config file at the target system
     Default value: "running"
 Either 'running' or 'stopped' to chose whether mailhog should run on system startup or not.
 
+
 #####`$mailhog::params::service_name`
     Default value: "mailhog"
 Name of the service
 
+
 #####`$mailhog::params::binary_path`
     Default value: "/usr/bin"
 Where to place the mailhog binary at the target system
+
 
 #####`$mailhog::params::binary_file`
     Default value: "${binary_path}/mailhog"
@@ -251,7 +259,8 @@ Path of the mailhog binary at the target system
 
 #####`$mailhog::params::source_file`
     Default value: "MailHog_linux_v${$mailhog_version}_386"
-The filename at the "files" directory of the puppet module. This will be populated with the file according to the target systems architecture.
+The download URL for the mailhog binary at the "files" directory of the puppet module. This will be populated with the file according to the target systems architecture.
+
 
 #####`$mailhog::params::user`
     Default value: mailhog
