@@ -62,12 +62,17 @@ class mailhog::params {
     }
   }
 
+  $repo_arch = $::architecture ? {
+    /^.*64$/ => 'amd64',
+    default => $::architecture,
+  }
+
   #Choose Source file based on local architecture
-  if $::architecture  == 'amd64' {
+  if $repo_arch  == 'amd64' {
     $source_file = "https://github.com/mailhog/MailHog/releases/download/v${mailhog_version}/MailHog_linux_amd64"
   }
   
-  elsif $::architecture  == 'arm' {
+  elsif $repo_arch  == 'arm' {
     $source_file = "https://github.com/mailhog/MailHog/releases/download/v${mailhog_version}/MailHog_linux_arm"
   }
   
