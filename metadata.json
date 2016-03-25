@@ -1,6 +1,6 @@
 {
   "name": "ftaeger-mailhog",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "ftaeger",
   "summary": "Instal & configure MailHog",
   "license": "Apache-2.0",

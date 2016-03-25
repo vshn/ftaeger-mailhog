@@ -88,7 +88,7 @@ The following parameters are available in the ::mailhog class:
 
 ####MailHog config values
 | parameter                                |      default value      |  description |
-II-----------------------------------------|-------------------------|--------------|
+|------------------------------------------|-------------------------|--------------|
 | `$api_bind_ip`          | 0.0.0.0   | The IP address the API server will be bound to. |
 | `$api_bind_port`        | 8025      | The port the API server will be bound to. |
 | `$api_bind_host`        | undef     | API URL for MailHog UI to connect to, e.g. http://some.host:1234 if API and WebUI are deployed on different hosts/IPs. |
