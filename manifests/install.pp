@@ -16,19 +16,42 @@ class mailhog::install inherits mailhog {
     ensure => present,
   }
 
-  # Deploy mailhog binary
-  wget::fetch { 'Download MailHog binary':
-    source      => $mailhog::source_file,
-    destination => $mailhog::binary_file,
-    timeout     => 0,
-    verbose     => false,
+  # Download Mailhog binary
+  if $mailhog::download_mailhog {
+    include wget
+
+    # Deploy mailhog binary
+    wget::fetch { $mailhog::download_url:
+      destination => $mailhog::binary_file,
+      timeout     => 0,
+      verbose     => false,
+    }
+
+    file {$mailhog::binary_file:
+      ensure => 'present',
+      mode   => '0755',
+      owner  => 'root',
+      group  => 'root',
+    }
+    
+    notify { 'downloaded':
+      message => "MailHog binary sourced from ${mailhog::download_url}",
+    }
   }
 
-  file {$mailhog::binary_file:
-    ensure  => 'present',
-    mode    => '0755',
-    owner    => 'root',
-    group   => 'root',
+  # else use binary files located on puppet master.
+  else {
+    file {$mailhog::binary_file:
+      ensure => 'present',
+      mode   => '0755',
+      owner  => 'root',
+      group  => 'root',
+      source => $mailhog::source_file,
+    }
+    
+    notify { 'Not downloaded':
+      message => 'MailHog binary sourced from Puppet master',
+    }
   }
 
   # Deploy mailhog init script

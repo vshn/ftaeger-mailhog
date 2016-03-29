@@ -1,3 +1,13 @@
+2016-03-29 Release 1.0.7
+- added option to use puppet-master as source of MailHog binary. 
+
+2016-03-28 Release 1.0.6
+- removes wget wget cache dir due to a bug with puppet4 and strict mode
+
+2016-03-28 Release 1.0.5
+- Added wget cache dir to avoid multiple downloads of mailhog binary
+- 'include wget' added to install.pp
+
 2016-03-25 Release 1.0.4
 - Bugfix in Readme
 

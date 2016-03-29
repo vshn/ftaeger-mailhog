@@ -65,16 +65,19 @@ class mailhog (
   $initd_template          = $mailhog::params::initd_template,
   $config                  = $mailhog::params::config,
   $initd                   = $mailhog::params::initd,
-  $service_manage          = $mailhog::service_manage,
+  $service_manage          = $mailhog::params::service_manage,
   $service_enable          = $mailhog::params::service_enable,
   $service_ensure          = $mailhog::params::service_ensure,
   $service_name            = $mailhog::params::service_name,
   $binary_path             = $mailhog::params::binary_path,
   $binary_file             = $mailhog::params::binary_file,
   $source_file             = $mailhog::params::source_file,
+  $download_url            = $mailhog::params::download_url,
   $user                    = $mailhog::params::user,
   $homedir                 = $mailhog::params::homedir,
   $mailhog_version         = $mailhog::params::mailhog_version,
+  $wget_cache_dir          = $mailhog::params::wget_cache_dir,
+  $download_mailhog        = $mailhog::params::download_mailhog,
 ) inherits mailhog::params {
   
   #Validate values to match required type

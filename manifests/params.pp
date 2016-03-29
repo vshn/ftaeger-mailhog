@@ -17,6 +17,8 @@ class mailhog::params {
   $initd_template          = 'mailhog/initd-mailhog.erb'
   $service_name            = 'mailhog'
   $config                  = '/etc/mailhog.conf'
+  $wget_cache_dir          = '/var/cache/wget'
+  $download_mailhog        = true
 
   #Config values for mailhog config file
   $api_bind_ip             = '0.0.0.0'
@@ -67,18 +69,22 @@ class mailhog::params {
     default => $::architecture,
   }
 
-  #Choose Source file based on local architecture
-  if $repo_arch  == 'amd64' {
-    $source_file = "https://github.com/mailhog/MailHog/releases/download/v${mailhog_version}/MailHog_linux_amd64"
+  #Choose source files based on local architecture
+  case $repo_arch {
+    'amd64': {
+      $download_url = "https://github.com/mailhog/MailHog/releases/download/v${mailhog_version}/MailHog_linux_amd64"
+      $source_file  = 'puppet:///modules/mailhog/MailHog_linux_amd64'
+    }
+    'arm': {
+      $download_url = "https://github.com/mailhog/MailHog/releases/download/v${mailhog_version}/MailHog_linux_arm"
+      $source_file  = 'puppet:///modules/mailhog/MailHog_linux_arm'
+    }
+    '386': {
+      $download_url = "https://github.com/mailhog/MailHog/releases/download/v${mailhog_version}/MailHog_linux_386"
+      $source_file  = 'puppet:///modules/mailhog/MailHog_linux_386'
+    }
+    default: {
+      fail("${::architecture} not supported")
+    }
   }
-  
-  elsif $repo_arch  == 'arm' {
-    $source_file = "https://github.com/mailhog/MailHog/releases/download/v${mailhog_version}/MailHog_linux_arm"
-  }
-  
-  else {
-    $source_file = "https://github.com/mailhog/MailHog/releases/download/v${mailhog_version}/MailHog_linux_386"
-  }
-
-
 }

@@ -80,7 +80,10 @@ Put the classes, types, and resources for customizing, configuring, and doing th
 * `mailhog::config`:  Handles deployment of mailhog config file
 * `mailhog::service`: Handles deployment of the init.d script
 
-
+#### Download binary
+Due to the size limit of packages uploaded to the Forge, the module was designed to offer two options on where to source the MailHog binary from:
+* `$download_mailhog = true` (default): The MailHog binary will be downloaded from the official MailHog Github repository. This is good for a few servers as this is very modular and the module can be used right away. 
+* `$download_mailhog = false`: The MailHog binary will be sourced from the "files" subdirectory of this module. This is perfect to roll out multiple hosts with this module. In case this feature is required, the admin needs to download the 3 MailHog Linux binaries (MailHog_linux_386, MailHog_linux_arm, MailHog_linux_amd64) to the "files" folder of this module. Just call the mailhog class with `$download_mailhog = false`.  
 
 ###Parameters
 The following parameters are available in the ::mailhog class:
@@ -128,6 +131,7 @@ The following parameters are available in the ::mailhog class:
 | `$binary_path`          | /usr/bin                 | Where to place the mailhog binary at the target system |
 | `$user`                 | mailhog                  | Username of the user running mailhog service at the target system. |
 | `$homedir`              | /var/lib/mailhog         | Home directory of above mailhog user. |
+| `$download_mailhog`     | true                     | Enable/Disable wget download of MailHog binary. |
 
 
 ## Limitations
