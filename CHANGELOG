@@ -1,3 +1,6 @@
+2016-05-24 Release 1.0.9
+- Added code to avoid re-download of MailHog binary 
+
 2016-05-17 Release 1.0.8
 - updated stdlib version dependency due to an documentation error on 1st release
 
