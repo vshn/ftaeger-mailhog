@@ -25,6 +25,7 @@ class mailhog::install inherits mailhog {
       destination => $mailhog::binary_file,
       timeout     => 0,
       verbose     => false,
+      cache_dir   => '/var/cache/wget',
     }
 
     file {$mailhog::binary_file:
