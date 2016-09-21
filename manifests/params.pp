@@ -17,7 +17,6 @@ class mailhog::params {
   $initd_template          = 'mailhog/initd-mailhog.erb'
   $service_name            = 'mailhog'
   $config                  = '/etc/mailhog.conf'
-  $wget_cache_dir          = '/var/cache/wget'
   $download_mailhog        = true
 
   #Config values for mailhog config file
