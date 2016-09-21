@@ -18,41 +18,55 @@ class mailhog::install inherits mailhog {
 
   # Download Mailhog binary
   if $mailhog::download_mailhog {
-    include wget
-
-    # Deploy mailhog binary
-    wget::fetch { $mailhog::download_url:
-      destination => $mailhog::binary_file,
-      timeout     => 0,
-      verbose     => false,
-      cache_dir   => '/var/cache/wget',
+    
+    file { "$mailhog::homedir":
+      ensure => directory,
     }
 
-    file {$mailhog::binary_file:
-      ensure => 'present',
-      mode   => '0755',
-      owner  => 'root',
-      group  => 'root',
+    exec { "Download MailHog $mailhog::mailhog_version":
+      command => "/usr/bin/curl -o $mailhog::homedir/mailhog-$mailhog::mailhog_version -L $mailhog::download_url",
+      require => [ Package['curl'], File[ "$mailhog::homedir" ] ],
+      creates => "$mailhog::homedir/mailhog-$mailhog::mailhog_version",
+    }
+
+    file { "$mailhog::homedir/mailhog-$mailhog::mailhog_version":
+      ensure => present,
+      mode => "0755",
+      require => Exec["Download MailHog $mailhog::mailhog_version"],
+      notify => File["$mailhog::binary_file"],
+    }
+
+    file { "$mailhog::binary_file":
+      ensure => link,
+      target => "$mailhog::homedir/mailhog-$mailhog::mailhog_version",
+      require => File[ "$mailhog::homedir/mailhog-$mailhog::mailhog_version" ],
     }
     
-    notify { 'downloaded':
-      message => "MailHog binary sourced from ${mailhog::download_url}",
+    if ! defined(Package['curl']) {
+      package { 'curl':
+        ensure => installed,
+      }
     }
   }
 
   # else use binary files located on puppet master.
   else {
-    file {$mailhog::binary_file:
-      ensure => 'present',
-      mode   => '0755',
+    
+    file { "$mailhog::homedir/mailhog-$mailhog::mailhog_version":
+      ensure => present,
+      mode => "0755",
       owner  => 'root',
       group  => 'root',
       source => $mailhog::source_file,
+      notify => File["$mailhog::binary_file"],
     }
-    
-    notify { 'Not downloaded':
-      message => 'MailHog binary sourced from Puppet master',
+
+    file { "$mailhog::binary_file":
+      ensure => link,
+      target => "$mailhog::homedir/mailhog-$mailhog::mailhog_version",
+      require => File[ "$mailhog::homedir/mailhog-$mailhog::mailhog_version" ],
     }
+
   }
 
   # Deploy mailhog init script
