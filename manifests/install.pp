@@ -5,7 +5,7 @@
 
 class mailhog::install inherits mailhog {
 
-  # Add user to run mailhog with lower privilegues
+  # Add user to run mailhog with lower privileges
   user { $mailhog::user:
     ensure => 'present',
     home   => $mailhog::homedir,
