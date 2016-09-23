@@ -7,8 +7,8 @@
 class mailhog::params {
 
   #Config values for puppet module run
-  $mailhog_version        = '0.2.0'
-  $homedir                = '/var/lib/mailhog'
+  $mailhog_version        = '0.2.1'
+  $homedir                = '/usr/local/bin/mailhog'
   $user                   = 'mailhog'
   $service_manage          = true
   $service_enable          = true
@@ -17,7 +17,6 @@ class mailhog::params {
   $initd_template          = 'mailhog/initd-mailhog.erb'
   $service_name            = 'mailhog'
   $config                  = '/etc/mailhog.conf'
-  $wget_cache_dir          = '/var/cache/wget'
   $download_mailhog        = true
 
   #Config values for mailhog config file
