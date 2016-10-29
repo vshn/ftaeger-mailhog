@@ -78,7 +78,7 @@ class mailhog::params {
       $download_url = "https://github.com/mailhog/MailHog/releases/download/v${mailhog_version}/MailHog_linux_arm"
       $source_file  = 'puppet:///modules/mailhog/MailHog_linux_arm'
     }
-    '386': {
+    '386', 'i386': {
       $download_url = "https://github.com/mailhog/MailHog/releases/download/v${mailhog_version}/MailHog_linux_386"
       $source_file  = 'puppet:///modules/mailhog/MailHog_linux_386'
     }
