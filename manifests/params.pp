@@ -18,6 +18,7 @@ class mailhog::params {
   $service_name            = 'mailhog'
   $config                  = '/etc/mailhog.conf'
   $download_mailhog        = true
+  $wget_cache_dir          = undef
 
   #Config values for mailhog config file
   $api_bind_ip             = '0.0.0.0'
