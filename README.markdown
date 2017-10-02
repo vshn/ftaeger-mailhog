@@ -85,11 +85,11 @@ Due to the size limit of packages uploaded to the Forge, the module was designed
 * `$download_mailhog = true` (default): The MailHog binary will be downloaded from the official MailHog Github repository. This is good for a few servers as this is very modular and the module can be used right away. 
 * `$download_mailhog = false`: The MailHog binary will be sourced from the "files" subdirectory of this module. This is perfect to roll out multiple hosts with this module. In case this feature is required, the admin needs to download the 3 MailHog Linux binaries (MailHog_linux_386, MailHog_linux_arm, MailHog_linux_amd64) to the "files" folder of this module. Just call the mailhog class with `$download_mailhog = false`.  
 
-###Parameters
+### Parameters
 The following parameters are available in the ::mailhog class:
 
 
-####MailHog config values
+#### MailHog config values
 | parameter                                |      default value      |  description |
 |------------------------------------------|-------------------------|--------------|
 | `$api_bind_ip`          | 0.0.0.0   | The IP address the API server will be bound to. |
@@ -119,7 +119,7 @@ The following parameters are available in the ::mailhog class:
 
 
 
-####Puppet module config values
+#### Puppet module config values
 | parameter                                |      default value       |  description |
 |------------------------------------------|--------------------------|--------------|
 | `$mailhog_version`              | 0.2.0                    | Version of Mailhog to be used. Feel free to look up the latest release version from [GitHub](https://github.com/mailhog/MailHog/releases/latest) |
@@ -144,7 +144,7 @@ Today the module was tested with Ubuntu 14.04 and 12.04 only. It might work with
 Feel free to pull the repository and commit changes. I will review them asap and add them if I think they are helpful or reasonable. No guarantees but a lot of heart ;-)
 
 
-###Contributors
+### Contributors
 
 To see who's already involved, see the [list of contributors.](https://github.com/ftaeger/ftaeger-mailhog/graphs/contributors)
 
