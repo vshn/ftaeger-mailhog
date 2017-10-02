@@ -68,7 +68,7 @@ include mailhog
 
 Put the classes, types, and resources for customizing, configuring, and doing the fancy stuff with your module here. 
 
-##Reference
+## Reference
 
 ### Classes
 #### Public Classes
@@ -113,7 +113,7 @@ The following parameters are available in the ::mailhog class:
 | `$outgoing_smtp`        | undef     | JSON file containing outgoing SMTP servers |
 | `$smtp_bind_addr_ip`    | 127.0.0.1 | SMTP bind interface, this is where MailHog will receive incoming mails |
 | `$smtp_bind_addr_port`  | 1025      | SMTP bind port, this is where MailHog will receive incoming mails |
-| `$storage`              | memory    | Message storage: memory or mongodb |
+| `$storage`              | memory    | Message storage: `memory`, `mongodb` or `maildir` |
 | `$ui_bind_addr_ip`      | 0.0.0.0   | HTTP bind interface for WebUI |
 | `$ui_bind_addr_port`    | 8025      | HTTP bind port for WebUI |
 

@@ -71,7 +71,7 @@ MAILHOG_OUTGOING_SMTP="<%= @outgoing_smtp %>"
 #  -smtp-bind-addr="0.0.0.0:1025": SMTP bind interface and port, e.g. 0.0.0.0:1025 or just :1025
 MAILHOG_SMTP_BIND_ADDR="<%= @smtp_bind_addr_ip %>:<%= @smtp_bind_addr_port %>"
 
-#  -storage="memory": Message storage: memory (default) or mongodb
+#  -storage="memory": Message storage: memory (default), mongodb or maildir
 MAILHOG_STORAGE="<%= @storage %>"
 
 #  -ui-bind-addr="0.0.0.0:8025": HTTP bind interface and port for UI, e.g. 0.0.0.0:8025 or just :8025
