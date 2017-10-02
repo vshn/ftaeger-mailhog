@@ -7,7 +7,7 @@
 class mailhog::params {
 
   #Config values for puppet module run
-  $mailhog_version        = '0.2.1'
+  $mailhog_version        = '1.0.0'
   $homedir                = '/usr/local/bin/mailhog'
   $user                   = 'mailhog'
   $service_manage          = true

@@ -122,7 +122,7 @@ The following parameters are available in the ::mailhog class:
 #### Puppet module config values
 | parameter                                |      default value       |  description |
 |------------------------------------------|--------------------------|--------------|
-| `$mailhog_version`              | 0.2.0                    | Version of Mailhog to be used. Feel free to look up the latest release version from [GitHub](https://github.com/mailhog/MailHog/releases/latest) |
+| `$mailhog_version`              | 1.0.0                    | Version of Mailhog to be used. Feel free to look up the latest release version from [GitHub](https://github.com/mailhog/MailHog/releases/latest) |
 | `$config`               | /etc/mailhog.conf        | Path and filename for mailhog config file at the target system |
 | `$mailhog::service_manage`               | true                     | Whether the service should be managed by this module or not. |
 | `$service_enable`       | true                     | Whether the service should be started on boot or not. |
