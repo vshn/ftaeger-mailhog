@@ -63,6 +63,7 @@ class mailhog (
   # Puppet module config values
   $config_template         = $mailhog::params::config_template,
   $initd_template          = $mailhog::params::initd_template,
+  $systemd_template        = $mailhog::params::systemd_template,
   $config                  = $mailhog::params::config,
   $initd                   = $mailhog::params::initd,
   $service_manage          = $mailhog::params::service_manage,
