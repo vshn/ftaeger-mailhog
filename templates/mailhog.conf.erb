@@ -77,6 +77,9 @@ MAILHOG_STORAGE="<%= @storage %>"
 #  -ui-bind-addr="0.0.0.0:8025": HTTP bind interface and port for UI, e.g. 0.0.0.0:8025 or just :8025
 MAILHOG_UI_BIND_ADDR="<%= @ui_bind_addr_ip %>:<%= @ui_bind_addr_port %>"
 
+#  -auth-file="docs/example-auth": HTTP basic authentication. One user per line, password is bcrypted
+MAILHOG_AUTH_FILE="<%= @htpasswd_file %>"
+
 # Additional options that are passed to the Daemon.
 DAEMON_OPTS="-api-bind-addr=$MAILHOG_API_BIND_ADDR \
              -api-host=$MAILHOG_API_HOST \
@@ -96,6 +99,7 @@ DAEMON_OPTS="-api-bind-addr=$MAILHOG_API_BIND_ADDR \
              -mongo-uri=$MAILHOG_MONGO_URI \
              -outgoing-smtp=$MAILHOG_OUTGOING_SMTP \
              -smtp-bind-addr=$MAILHOG_SMTP_BIND_ADDR \
-             -storage=$MAILHOG_STORAGE \
-             -ui-bind-addr=$MAILHOG_UI_BIND_ADDR \
-            "
+             -storage=$MAILHOG_STORAGE \<%- if @htpasswd_users %>
+             -auth-file=$MAILHOG_AUTH_FILE \
+<% end -%>
+             -ui-bind-addr=$MAILHOG_UI_BIND_ADDR"
