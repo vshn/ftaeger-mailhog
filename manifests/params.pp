@@ -15,6 +15,7 @@ class mailhog::params {
   $service_ensure          = 'running'
   $config_template         = 'mailhog/mailhog.conf.erb'
   $initd_template          = 'mailhog/initd-mailhog.erb'
+  $systemd_template        = 'mailhog/systemd-mailhog.erb'
   $service_name            = 'mailhog'
   $config                  = '/etc/mailhog.conf'
   $download_mailhog        = true

@@ -69,13 +69,23 @@ class mailhog::install inherits mailhog {
 
   }
 
-  # Deploy mailhog init script
-  file { $mailhog::initd:
-    ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
-    content => template($mailhog::initd_template),
+  if $running_on_systemd {
+    file { "/etc/systemd/system/${service_name}.service":
+      ensure  => file,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template($mailhog::systemd_template),
+    }
+  } else{
+    # Deploy mailhog init script
+    file { $mailhog::initd:
+      ensure  => file,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      content => template($mailhog::initd_template),
+    }
   }
 
 }

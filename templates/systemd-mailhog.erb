@@ -1,0 +1,6 @@
+[Unit]
+Description=<%= @service_name %>
+
+[Service]
+EnvironmentFile=<%= @config %>
+ExecStart=<%= @binary_file %> $(echo $DAEMON_OPTS)
