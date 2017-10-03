@@ -60,6 +60,8 @@ class mailhog (
   $ui_bind_addr_ip         = $mailhog::params::ui_bind_addr_ip,
   $ui_bind_addr_port       = $mailhog::params::ui_bind_addr_port,
   $start_script            = $mailhog::params::start_script,
+  $htpasswd_users          = $mailhog::params::htpasswd_users,
+  $htpasswd_file           = $mailhog::params::htpasswd_file,
 
   # Puppet module config values
   $config_template         = $mailhog::params::config_template,
@@ -109,6 +111,10 @@ class mailhog (
   validate_string($storage)
   validate_ip_address($ui_bind_addr_ip)
   validate_integer($ui_bind_addr_port, 65535, 0)
+  if $htpasswd_users != undef {
+    validate_array($htpasswd_users)
+  }
+  validate_string($htpasswd_file)
 
   # Puppet module config values
   validate_absolute_path($config)
