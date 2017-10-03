@@ -116,6 +116,7 @@ The following parameters are available in the ::mailhog class:
 | `$storage`              | memory    | Message storage: `memory`, `mongodb` or `maildir` |
 | `$ui_bind_addr_ip`      | 0.0.0.0   | HTTP bind interface for WebUI |
 | `$ui_bind_addr_port`    | 8025      | HTTP bind port for WebUI |
+| `$htpasswd_users   `    |undef      | HTTP basic authentication. Password is bcrypted i.e. for test:test `test:$2y$05$9NnaYrT1XGXerV5R2RfMDOHQAO946jil2xiWO4eEjjS2co6tHIzp6` |
 
 
 

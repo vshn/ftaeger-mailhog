@@ -46,6 +46,8 @@ class mailhog::params {
   $storage                 = 'memory'
   $ui_bind_addr_ip         = '0.0.0.0'
   $ui_bind_addr_port       = '8025'
+  $htpasswd_users          = undef
+  $htpasswd_file           = '/etc/mailhog-users.htpasswd'
 
   case $::osfamily {
     'Debian': {

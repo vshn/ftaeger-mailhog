@@ -88,4 +88,12 @@ class mailhog::install inherits mailhog {
     }
   }
 
+  file { $mailhog::htpasswd_file:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0600',
+    content => template("${module_name}/htpasswd.erb"),
+  }
+
 }
