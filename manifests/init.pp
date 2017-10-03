@@ -59,6 +59,7 @@ class mailhog (
   $storage                 = $mailhog::params::storage,
   $ui_bind_addr_ip         = $mailhog::params::ui_bind_addr_ip,
   $ui_bind_addr_port       = $mailhog::params::ui_bind_addr_port,
+  $start_script            = $mailhog::params::start_script,
 
   # Puppet module config values
   $config_template         = $mailhog::params::config_template,
