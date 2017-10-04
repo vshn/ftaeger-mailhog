@@ -103,4 +103,11 @@ class mailhog::install inherits mailhog {
     content => template("${module_name}/htpasswd.erb"),
   }
 
+  # create maildir
+  if( $mailhog::storage == "maildir" and $mailhog::maildir_path != ""){
+    file { "$mailhog::maildir_path":
+      ensure => directory,
+    }
+  }
+
 }

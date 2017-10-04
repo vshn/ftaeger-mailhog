@@ -44,6 +44,7 @@ class mailhog::params {
   $smtp_bind_addr_ip       = '127.0.0.1'
   $smtp_bind_addr_port     = '1025'
   $storage                 = 'memory'
+  $maildir_path            = ''
   $ui_bind_addr_ip         = '0.0.0.0'
   $ui_bind_addr_port       = '8025'
   $htpasswd_users          = undef

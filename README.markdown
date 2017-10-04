@@ -114,9 +114,10 @@ The following parameters are available in the ::mailhog class:
 | `$smtp_bind_addr_ip`    | 127.0.0.1 | SMTP bind interface, this is where MailHog will receive incoming mails |
 | `$smtp_bind_addr_port`  | 1025      | SMTP bind port, this is where MailHog will receive incoming mails |
 | `$storage`              | memory    | Message storage: `memory`, `mongodb` or `maildir` |
+| `$maildir_path`         | tmp-path  | Maildir path (if storage type is `maildir`) |
 | `$ui_bind_addr_ip`      | 0.0.0.0   | HTTP bind interface for WebUI |
 | `$ui_bind_addr_port`    | 8025      | HTTP bind port for WebUI |
-| `$htpasswd_users   `    |undef      | HTTP basic authentication. Password is bcrypted i.e. for test:test `test:$2y$05$9NnaYrT1XGXerV5R2RfMDOHQAO946jil2xiWO4eEjjS2co6tHIzp6` |
+| `$htpasswd_users   `    | undef     | HTTP basic authentication. Password is bcrypted i.e. for test:test `test:$2y$05$9NnaYrT1XGXerV5R2RfMDOHQAO946jil2xiWO4eEjjS2co6tHIzp6` |
 
 
 
