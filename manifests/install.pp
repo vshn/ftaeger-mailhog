@@ -77,6 +77,13 @@ class mailhog::install inherits mailhog {
       mode    => '0644',
       content => template($mailhog::systemd_template),
     }
+    file { $mailhog::start_script:
+      ensure  => file,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      content => template("${module_name}/start-mailhog.sh.erb"),
+    }
   } else{
     # Deploy mailhog init script
     file { $mailhog::initd:

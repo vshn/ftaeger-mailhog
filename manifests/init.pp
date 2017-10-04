@@ -61,6 +61,7 @@ class mailhog (
   $ui_bind_addr_port       = $mailhog::params::ui_bind_addr_port,
   $htpasswd_users          = $mailhog::params::htpasswd_users,
   $htpasswd_file           = $mailhog::params::htpasswd_file,
+  $start_script            = $mailhog::params::start_script,
 
   # Puppet module config values
   $config_template         = $mailhog::params::config_template,

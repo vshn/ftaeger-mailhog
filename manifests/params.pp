@@ -48,6 +48,7 @@ class mailhog::params {
   $ui_bind_addr_port       = '8025'
   $htpasswd_users          = undef
   $htpasswd_file           = '/etc/mailhog-users.htpasswd'
+  $start_script            = '/etc/start-mailhog.sh'
 
   case $::osfamily {
     'Debian': {
