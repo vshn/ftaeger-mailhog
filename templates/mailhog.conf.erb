@@ -74,6 +74,9 @@ MAILHOG_SMTP_BIND_ADDR="<%= @smtp_bind_addr_ip %>:<%= @smtp_bind_addr_port %>"
 #  -storage="memory": Message storage: memory (default), mongodb or maildir
 MAILHOG_STORAGE="<%= @storage %>"
 
+#  -maildir-path="path": Maildir path (if storage type is 'maildir')
+MAILHOG_MAILDIR_PATH="<%= @maildir_path %>"
+
 #  -ui-bind-addr="0.0.0.0:8025": HTTP bind interface and port for UI, e.g. 0.0.0.0:8025 or just :8025
 MAILHOG_UI_BIND_ADDR="<%= @ui_bind_addr_ip %>:<%= @ui_bind_addr_port %>"
 
@@ -99,7 +102,8 @@ DAEMON_OPTS="-api-bind-addr=$MAILHOG_API_BIND_ADDR \
              -mongo-uri=$MAILHOG_MONGO_URI \
              -outgoing-smtp=$MAILHOG_OUTGOING_SMTP \
              -smtp-bind-addr=$MAILHOG_SMTP_BIND_ADDR \
-             -storage=$MAILHOG_STORAGE \<%- if @htpasswd_users %>
+             -storage=$MAILHOG_STORAGE \
+             -maildir-path=$MAILHOG_MAILDIR_PATH \<%- if @htpasswd_users %>
              -auth-file=$MAILHOG_AUTH_FILE \
 <% end -%>
              -ui-bind-addr=$MAILHOG_UI_BIND_ADDR"
